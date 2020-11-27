@@ -111,6 +111,9 @@ jobs:
       - name: "Check for missing headers"
         run: |
           docker exec app bin/console glpi:tools:licence_header_check
+      - name: "Twig lint"
+        run: |
+          docker exec app vendor/bin/twigcs templates/
       - name: "Cleanup containers"
         if: always()
         run: |
