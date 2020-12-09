@@ -2549,7 +2549,6 @@ JAVASCRIPT;
       $field_id = Html::cleanId("dropdown_criteria{$prefix}[$num][itemtype]$rand");
       $spanid   = Html::cleanId("show_".$request["itemtype"]."_".$prefix.$num."_$rand");
       // Ajax script for display search met& item
-      echo "<blockquote>";
 
       $params = [
          'action'          => 'display_criteria',
@@ -2569,14 +2568,13 @@ JAVASCRIPT;
          $params
       );
 
-      echo "<span id='$spanid'>";
+      echo "<div class='col-auto row' id='$spanid'>";
       if (isset($metacriteria['itemtype'])
           && !empty($metacriteria['itemtype'])) {
          $params['itemtype'] = $metacriteria['itemtype'];
          self::displayCriteria($params);
       }
-      echo "</span>";
-      echo "</blockquote>";
+      echo "</div>";
    }
 
    /**
