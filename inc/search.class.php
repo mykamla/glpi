@@ -2384,7 +2384,6 @@ JAVASCRIPT;
          $operators = Search::getLogicalOperators(($num == 0));
          Dropdown::showFromArray("criteria{$prefix}[$num][link]", $operators, [
             'value' => $value,
-            'width' => '80px'
          ]);
          echo "</div>";
       }
@@ -2425,7 +2424,6 @@ JAVASCRIPT;
       echo "<div class='col-auto'>";
       $rand = Dropdown::showFromArray("criteria{$prefix}[$num][field]", $values, [
          'value' => $value,
-         'width' => '170px'
       ]);
       echo "</div>";
       $field_id = Html::cleanId("dropdown_criteria{$prefix}[$num][field]$rand");
@@ -2532,7 +2530,6 @@ JAVASCRIPT;
             'value' => isset($metacriteria["link"])
                ? $metacriteria["link"]
                : "",
-            'width' => '80px'
          ]
       );
       echo "</div>";
@@ -2544,7 +2541,6 @@ JAVASCRIPT;
                     && !empty($metacriteria['itemtype'])
                      ? $metacriteria['itemtype']
                      : "",
-         'width' => '170px'
       ]);
       echo "</div>";
       echo "</div>";
@@ -2619,7 +2615,6 @@ JAVASCRIPT;
       echo "<div class='col-auto'>";
       Dropdown::showFromArray("criteria{$prefix}[$num][link]", Search::getLogicalOperators(), [
          'value' => isset($criteria["link"]) ? $criteria["link"] : '',
-         'width' => '80px'
       ]);
       echo "</div>";
       echo "</div>";
@@ -2773,7 +2768,6 @@ JAVASCRIPT;
          echo "<div class='col-auto'>";
          $rands = Dropdown::showFromArray($searchtype_name, $actions, [
             'value' => $request["searchtype"],
-            'width' => '105px'
          ]);
          echo "</div>";
          $fieldsearch_id = Html::cleanId("dropdown_$searchtype_name$rands");
