@@ -1,7 +1,8 @@
+<?php
 /**
  * ---------------------------------------------------------------------
  * GLPI - Gestionnaire Libre de Parc Informatique
- * Copyright (C) 2015-2021 Teclib' and contributors.
+ * Copyright (C) 2015-2020 Teclib' and contributors.
  *
  * http://glpi-project.org
  *
@@ -27,17 +28,21 @@
  * You should have received a copy of the GNU General Public License
  * along with GLPI. If not, see <http://www.gnu.org/licenses/>.
  * ---------------------------------------------------------------------
-*/
+ */
 
-@import "css/includes/base";
-@import "css/includes/global-variables";
+include ('../inc/includes.php');
 
-@import "css/includes/components/debug-pannel";
-@import "css/includes/components/fuzzy";
-@import "css/includes/components/global-menu";
-@import "css/includes/components/saved-searches";
-@import "css/includes/components/scrollbars";
-@import "css/includes/components/select2";
-@import "css/includes/components/user-menu";
+header('Content-Type: application/json; charset=UTF-8');
+Html::header_nocache();
 
-@import "css/includes/pages/search";
+Session::checkLoginUser();
+
+$user = new User();
+$success = $user->update(
+   [
+      'id'                   => Session::getLoginUserID(),
+      'savedsearches_pinned' => (bool)$_SESSION['glpisavedsearches_pinned'] ? 0 : 1,
+   ]
+);
+
+echo json_encode(['success' => $success]);
