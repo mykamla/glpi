@@ -34,6 +34,8 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access this file directly");
 }
 
+use Glpi\Application\View\TemplateRenderer;
+
 /**
  *  Common GLPI object
 **/
@@ -1224,6 +1226,13 @@ class CommonGLPI {
       }
 
       echo "<div class='d-flex flex-column'>";
+      echo "<div class='row'>";
+      if ($this instanceof CommonDBTM) {
+         TemplateRenderer::getInstance()->display('layout/parts/saved_searches.html.twig', [
+            'itemtype' => $this->getType(),
+         ]);
+      }
+      echo "<div class='col'>";
       $this->showNavigationHeader($options);
       if (!self::isLayoutExcludedPage() && self::isLayoutWithMain()) {
 
@@ -1234,6 +1243,7 @@ class CommonGLPI {
       }
 
       $this->showTabsContent($options);
+      echo "</div>";
       echo "</div>";
    }
 

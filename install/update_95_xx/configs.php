@@ -48,4 +48,9 @@ $migration->addField('glpi_users', 'fold_menu', 'tinyint(1) DEFAULT NULL', ['aft
 
 $migration->displayMessage('Add saved searches pin config / user preference');
 Config::setConfigurationValues('core', ['savedsearches_pinned' => 0]);
-$migration->addField('glpi_users', 'savedsearches_pinned', 'tinyint(1) DEFAULT NULL', ['after' => 'fold_menu']);
+// if exist, may be a bool field, migrate if (if already text, the migration will do nothing)
+if ($DB->fieldExists('glpi_users', 'savedsearches_pinned')) {
+   $migration->changeField('glpi_users', 'savedsearches_pinned', 'savedsearches_pinned', 'TEXT COLLATE utf8_unicode_ci');
+} else {
+   $migration->addField('glpi_users', 'savedsearches_pinned', 'TEXT COLLATE utf8_unicode_ci', ['after' => 'fold_menu']);
+}
