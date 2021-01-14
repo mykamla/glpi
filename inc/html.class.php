@@ -5350,6 +5350,7 @@ JAVASCRIPT;
          $display .= "<div id='{$p['dropZone']}'>";
          $display .= "<span class='b'>".__('Drag and drop your file here, or').'</span><br>';
          $display .= "<input id='fileupload{$p['rand']}' type='file' name='".$p['name']."[]'
+                         class='form-control form-control-sm'
                          data-url='".$CFG_GLPI["root_doc"]."/ajax/fileupload.php'
                          data-form-data='{\"name\": \"".$p['name']."\",
                                           \"showfilesize\": \"".$p['showfilesize']."\"}'".($p['multiple']?" multiple='multiple'":"").">";
